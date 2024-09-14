@@ -12,6 +12,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
 
+const baseURL = process.env.REACT_APP_BASE_URL;
+
 const PostWidget = ({
   postId,
   postUserId,
@@ -37,7 +39,7 @@ const PostWidget = ({
   const primary = palette.primary.main;
 
   const patchLike = async () => {
-    const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
+    const response = await fetch(`${baseURL}/posts/${postId}/like`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -51,7 +53,7 @@ const PostWidget = ({
 
   const handleCommentSubmit = async () => {
     if (newComment.trim() !== '') {
-      const response = await fetch(`http://localhost:3001/posts/${postId}/comments`, {
+      const response = await fetch(`${baseURL}/posts/${postId}/comments`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -86,7 +88,7 @@ const PostWidget = ({
           src={
             picturePath.startsWith("data:") || picturePath.startsWith("http") 
               ? picturePath 
-              : `http://localhost:3001/assets/${picturePath}`
+              : `${baseURL}/assets/${picturePath}`
           }
         />
       )}

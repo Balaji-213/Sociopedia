@@ -11,6 +11,9 @@ import {
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+const baseURL = process.env.REACT_APP_BASE_URL;
+
+
 const NavSearchWidget = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
@@ -47,7 +50,7 @@ const NavSearchWidget = () => {
     const fetchOptions = async () => {
       try {
 
-        const response = await fetch(`http://localhost:3001/users/search/${inputValue}`,{
+        const response = await fetch(`${baseURL}/users/search/${inputValue}`,{
           method: "GET",
           headers: { Authorization: `Bearer ${token}` },
         });

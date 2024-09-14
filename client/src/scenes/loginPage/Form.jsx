@@ -17,6 +17,8 @@ import { setLogin } from "state";
 import Dropzone from "react-dropzone";
 import FlexBetween from "components/FlexBetween";
 
+const baseURL = process.env.REACT_APP_BASE_URL;
+
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("required"),
   lastName: yup.string().required("required"),
@@ -84,7 +86,7 @@ const Form = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:3001/auth/register", {
+      const response = await fetch(`${baseURL}/auth/register`, {
         method: "POST",
         body: formData,
       });
@@ -112,7 +114,7 @@ const Form = () => {
 
   const login = async (values, onSubmitProps) => {
     try {
-      const response = await fetch("http://localhost:3001/auth/login", {
+      const response = await fetch(`${baseURL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
@@ -151,7 +153,7 @@ const Form = () => {
   };
 
   const handleGoogleLogin = async () => {
-    const response = await fetch('http://127.0.0.1:3001/request', { method: 'post' });
+    const response = await fetch(`${baseURL}/request`, { method: 'post' });
 
     const data = await response.json();
     console.log(data);

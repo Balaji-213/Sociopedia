@@ -15,6 +15,8 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const baseURL = process.env.REACT_APP_BASE_URL;
+
 
 const UserWidget = ({ userId, picturePath, setRefresh }) => {
   const [user, setUser] = useState(null);
@@ -55,7 +57,7 @@ const UserWidget = ({ userId, picturePath, setRefresh }) => {
       formDataToSend.append(key, formData[key]);
     }
 
-    const response = await fetch(`http://localhost:3001/users/${userId}/updateId`, {
+    const response = await fetch(`${baseURL}/users/${userId}/updateId`, {
       method: "PUT",
       headers: { Authorization: `Bearer ${token}` },
       body: formDataToSend,
@@ -66,7 +68,7 @@ const UserWidget = ({ userId, picturePath, setRefresh }) => {
   };
 
   const getUser = async () => {
-    const response = await fetch(`http://localhost:3001/users/${userId}`, {
+    const response = await fetch(`${baseURL}/users/${userId}`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -85,7 +87,7 @@ const UserWidget = ({ userId, picturePath, setRefresh }) => {
   const patchFriend = async () => {
     if(mainUser !== userId){
       const response = await fetch(
-        `http://localhost:3001/users/${mainUser}/${userId}`,
+        `${baseURL}/users/${mainUser}/${userId}`,
         {
           method: "PATCH",
           headers: {

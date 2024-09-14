@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFriends } from "state";
 
+const baseURL = process.env.REACT_APP_BASE_URL;
+
 const FriendListWidget = ({ userId, refresh }) => {
   const dispatch = useDispatch();
   const { palette } = useTheme();
@@ -13,7 +15,7 @@ const FriendListWidget = ({ userId, refresh }) => {
 
   const getFriends = async () => {
     const response = await fetch(
-      `http://localhost:3001/users/${userId}/friends`,
+      `${baseURL}/users/${userId}/friends`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
