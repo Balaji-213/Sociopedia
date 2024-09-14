@@ -65,6 +65,9 @@ const upload2 = multer({
   }
 });
 
+app.get("/", (req, res) => {
+  res.send("Hi Admin");
+});
 
 /* ROUTES WITH FILES */
 app.post("/auth/register",upload2.any(), register);
