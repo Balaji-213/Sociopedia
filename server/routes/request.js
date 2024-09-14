@@ -10,7 +10,7 @@ import { OAuth2Client } from "google-auth-library";
 
 /* GET users listing. */
 router.post('/', async function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", 'https://sociopedia-o098dtoa4-balaji-n-ks-projects.vercel.app');
+  res.header("Access-Control-Allow-Origin", 'https://sociopedia-gamma-jade.vercel.app/');
   res.header("Access-Control-Allow-Credentials", 'true');
   res.header("Referrer-Policy","no-referrer-when-downgrade");
   const redirectURL = `${baseURL}/oauth`;
