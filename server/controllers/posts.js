@@ -6,7 +6,8 @@ import { uploadImage } from "../middleware/uploadImage.js";
 export const createPost = async (req, res) => {
   try {
     const { userId, description, picture } = req.body;
-    const pictureUrl = await uploadImage(picture);
+    // const pictureUrl = await uploadImage(picture);
+    const pictureUrl = picture ? await uploadImage(picture) : null;
     const user = await User.findById(userId);
     const newPost = new Post({
       userId,
