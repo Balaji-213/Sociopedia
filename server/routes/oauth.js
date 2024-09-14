@@ -5,6 +5,8 @@ import User from "../models/User.js";
 dotenv.config();
 import jwt from "jsonwebtoken";
 
+const baseURL = process.env.REACT_APP_BASE_URL;
+
 
 // const {OAuth2Client} = require('google-auth-library');
 import { OAuth2Client } from "google-auth-library";
@@ -26,7 +28,7 @@ router.get('/', async function(req, res, next) {
     const code = req.query.code;
 
     try {
-            const redirectURL = "http://127.0.0.1:3001/oauth";
+            const redirectURL = `${baseURL}/oauth`;
             const oAuth2Client = new OAuth2Client(
               process.env.GOOGLE_CLIENT_ID,
               process.env.GOOGLE_CLIENT_SECRET,
@@ -65,7 +67,7 @@ router.get('/', async function(req, res, next) {
 
             const token = jwt.sign({ id: userData._id }, process.env.JWT_SECRET);
 
-            res.redirect(`http://localhost:3000/oauth-callback?token=${token}&user=${userParam}`);
+            res.redirect(`https://sociopedia-h88w4nflo-balaji-n-ks-projects.vercel.app/oauth-callback?token=${token}&user=${userParam}`);
 
       } catch (err) {
         console.log('Error logging in with OAuth2 user', err);
