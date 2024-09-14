@@ -4,14 +4,16 @@ var router = express.Router();
 import dotenv from 'dotenv';
 dotenv.config(); // Load environment variables from .env file
 
+const baseURL = process.env.REACT_APP_BASE_URL;
+
 import { OAuth2Client } from "google-auth-library";
 
 /* GET users listing. */
 router.post('/', async function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", 'http://localhost:3000');
+  res.header("Access-Control-Allow-Origin", 'https://sociopedia-h88w4nflo-balaji-n-ks-projects.vercel.app');
   res.header("Access-Control-Allow-Credentials", 'true');
   res.header("Referrer-Policy","no-referrer-when-downgrade");
-  const redirectURL = 'http://127.0.0.1:3001/oauth';
+  const redirectURL = `${baseURL}/oauth`;
 
   const oAuth2Client = new OAuth2Client(
     process.env.GOOGLE_CLIENT_ID,
